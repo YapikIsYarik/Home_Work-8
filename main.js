@@ -28,8 +28,7 @@ const STUDENTS = [{
 //1
 const getSubject = (student) => {
    let res = [];
-   let keys = Object.keys(student.subjects);
-   for (const val of keys) {
+   for (const val of Object.keys(student.subjects)) {
       res.push((val[0].toUpperCase() + val.substring(1)).replace("_", " "))
    }
    return res;
@@ -56,24 +55,22 @@ const getStudentInfo = (student) => {
    }
 }
 //4
-const getStudentsNames = (student) => {
+const getStudentsNames = () => {
    let res = [];
-   for (let i = 0; i < student.length; i++) {
-      res.push(student[i].name)
-   }
+   STUDENTS.map(student => res.push(student.name))
    return res.sort();
 }
 //5
-const getBestStudent = (student) => {
+const getBestStudent = () => {
    let score = 0;
-   let studName = 0;
-   for (let i = 0; i < student.length; i++) {
-      if (getAverageMark(student[i]) > score) {
-         score = getAverageMark(student[i]);
-         studName = i;
+   let studName = "";
+   for (let i = 0; i < STUDENTS.length; i++) {
+      if (getAverageMark(STUDENTS[i]) > score) {
+         score = getAverageMark(STUDENTS[i]);
+         studName = STUDENTS[i].name;
       }
    }
-   return student[studName].name;
+   return studName;
 }
 //6
 const calculateWordLetters = (str) => {
@@ -86,4 +83,4 @@ console.log(getAverageMark(STUDENTS[0]))
 console.log(getStudentInfo(STUDENTS[0]))
 console.log(getStudentsNames(STUDENTS))
 console.log(getBestStudent(STUDENTS))
-console.log(calculateWordLetters("test"))
+console.log(calculateWordLetters("тест"))
